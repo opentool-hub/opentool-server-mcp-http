@@ -43,7 +43,7 @@ void main(List<String> arguments) async {
     final cmdName = command.name;
 
     switch (cmdName) {
-      case 'http':
+      case 'start':
         final toolPort = command['toolPort']??PORT;
         String? version = command['version'];
         if(version != null) defaultVersion = version;
