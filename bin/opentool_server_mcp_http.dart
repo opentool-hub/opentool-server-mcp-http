@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:args/args.dart';
 import 'package:mcp_dart/mcp_dart.dart' as mcp;
-import 'package:mcp_http/mcp_http_tool.dart';
+import 'package:mcp_http_tool/mcp_http_tool.dart';
 import 'package:opentool_dart/opentool_dart.dart';
 
 String defaultVersion = "1.0.0";

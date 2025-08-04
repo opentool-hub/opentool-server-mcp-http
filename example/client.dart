@@ -1,6 +1,5 @@
 import 'package:opentool_dart/opentool_dart.dart';
 import '../bin/opentool_server_mcp_http.dart';
-import 'server.dart';
 
 Future<void> main() async {
   Client client = OpenToolClient(port: PORT, apiKey: "bb31b6a6-1fda-4214-8cd6-b1403842070c");
