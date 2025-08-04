@@ -2,7 +2,7 @@ import '../bin/opentool_server_mcp_http.dart';
 import 'mock_mcp_http_server.dart';
 
 /// CLI Mode
-/// build/mcp_http start -p 3000 -v 1.0.0
+/// build/mcp_http start -p 3000 -v 1.0.0 -k "6621c8a3-2110-4e6a-9d62-70ccd467e789" -k "bb31b6a6-1fda-4214-8cd6-b1403842070c"
 
 /// CODE Mode
 Future<void> main(List<String> args) async {

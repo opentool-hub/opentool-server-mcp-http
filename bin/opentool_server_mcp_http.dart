@@ -17,6 +17,7 @@ void main(List<String> arguments) async {
     ..addOption('port', abbr: 'p', help: 'MCP Server Port.', mandatory: true)
     ..addOption('version', abbr: 'v', help: 'OpenTool Server Version. Default: $defaultVersion')
     ..addOption('toolPort', abbr: 't', help: 'OpenTool Server Port. Default: $PORT')
+    ..addMultiOption('apiKeys', abbr: 'k', help: 'OpenTool Server APIKEY, allow array, as: --apiKeys KEY_A --apiKeys KEY_B')
     ..addOption('ssl', abbr: 's', help: 'Use HTTPS.')
     ..addOption('host', abbr: 'h', help: 'MCP Server Host. Default: 127.0.0.1')
     ..addOption('accessToken', abbr: 'a', help: 'MCP Server Access Token.')
@@ -52,11 +53,13 @@ void main(List<String> arguments) async {
         final mcpPort = command['port']!;
         final mcpAccessToken = command['accessToken']?? null;
         final mcpRefreshToken =  command['refreshToken']?? null;
+        final apiKeys = command['apiKeys'] as List<String>?;
 
         await startMcpHttpTool(
           mcpPort,
           version,
           toolPort: toolPort,
+          apiKeys: apiKeys,
           mcpServerSsl: mcpSsl,
           mcpServerHost: mcpHost,
           mcpServerAccessToken: mcpAccessToken,
