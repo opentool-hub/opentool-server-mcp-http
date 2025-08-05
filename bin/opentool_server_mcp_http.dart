@@ -54,7 +54,7 @@ void main(List<String> arguments) async {
         else version = defaultVersion;
         final mcpSsl = command['ssl'] == null? true : false;
         final mcpHost = command['host']?? "127.0.0.1";
-        final port = command['port']!);
+        final mcpPort = int.parse(command['port']);
         final mcpAccessToken = command['accessToken']?? null;
         final mcpRefreshToken =  command['refreshToken']?? null;
         final apiKeys = command['apiKeys'] as List<String>?;
