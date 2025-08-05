@@ -47,7 +47,7 @@ class McpHttpTool extends Tool {
     functionModelList = _convertToFunctionModelList(listToolsResult);
     return OpenTool(
         opentool: "1.0.0",
-        info: Info(title: "MCP STDIO Tool", version: "1.0.0", description: "MCP STDIO for OpenTool."),
+        info: Info(title: "MCP HTTP Tool", version: "1.0.0", description: "MCP HTTP for OpenTool."),
         functions: functionModelList
     );
   }

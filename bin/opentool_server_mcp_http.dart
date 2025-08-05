@@ -48,13 +48,13 @@ void main(List<String> arguments) async {
 
     switch (cmdName) {
       case 'start':
-        final toolPort = command['toolPort']??TOOL_PORT;
+        final toolPort = command['toolPort']? TOOL_PORT : int.parse(command['toolPort']);
         String? version = command['version'];
         if(version != null) defaultVersion = version;
         else version = defaultVersion;
         final mcpSsl = command['ssl'] == null? true : false;
         final mcpHost = command['host']?? "127.0.0.1";
-        final mcpPort = command['port']!;
+        final port = command['port']!);
         final mcpAccessToken = command['accessToken']?? null;
         final mcpRefreshToken =  command['refreshToken']?? null;
         final apiKeys = command['apiKeys'] as List<String>?;
