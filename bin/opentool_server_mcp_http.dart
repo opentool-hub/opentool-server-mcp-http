@@ -4,8 +4,12 @@ import 'package:mcp_dart/mcp_dart.dart' as mcp;
 import 'package:mcp_http_tool/mcp_http_tool.dart';
 import 'package:opentool_dart/opentool_dart.dart';
 
+/// The command-line format follows [OpenTool Server Command-Line Interface Guidelines](https://github.com/opentool-hub/opentool-spec/blob/master/opentool-server-cli-guidelines-en.md).
+
+const String TOOL_NAME = "MCP_HTTP";
+const String CMD = "mcp_http";
 String defaultVersion = "1.0.0";
-const int PORT = 9641;
+const int TOOL_PORT = 9641;
 
 void main(List<String> arguments) async {
   final parser = ArgParser();
@@ -16,7 +20,7 @@ void main(List<String> arguments) async {
   parser.addCommand('start', ArgParser()
     ..addOption('port', abbr: 'p', help: 'MCP Server Port.', mandatory: true)
     ..addOption('version', abbr: 'v', help: 'OpenTool Server Version. Default: $defaultVersion')
-    ..addOption('toolPort', abbr: 't', help: 'OpenTool Server Port. Default: $PORT')
+    ..addOption('toolPort', abbr: 't', help: 'OpenTool Server Port. Default: $TOOL_NAME')
     ..addMultiOption('apiKeys', abbr: 'k', help: 'OpenTool Server APIKEY, allow array, as: --apiKeys KEY_A --apiKeys KEY_B')
     ..addOption('ssl', abbr: 's', help: 'Use HTTPS.')
     ..addOption('host', abbr: 'h', help: 'MCP Server Host. Default: 127.0.0.1')
@@ -44,7 +48,7 @@ void main(List<String> arguments) async {
 
     switch (cmdName) {
       case 'start':
-        final toolPort = command['toolPort']??PORT;
+        final toolPort = command['toolPort']??TOOL_PORT;
         String? version = command['version'];
         if(version != null) defaultVersion = version;
         else version = defaultVersion;
@@ -80,8 +84,8 @@ void main(List<String> arguments) async {
 }
 
 void _printHelp(ArgParser parser) {
-  print('MCP HTTP OpenTool Server ($defaultVersion) - OpenTool Server implement by MCP HTTP.\n');
-  print('Usage: mcp_http <command> [options]\n');
+  print('$TOOL_NAME OpenTool Server CLI ($defaultVersion) - OpenTool Server implement by $TOOL_NAME.\n');
+  print('Usage: $CMD <command> [options]\n');
 
   print('Available commands:\n');
   for (final entry in parser.commands.entries) {
@@ -99,7 +103,7 @@ void _printHelp(ArgParser parser) {
 Future<void> startMcpHttpTool(
     int mcpServerPort,
     String version,
-    { int toolPort = PORT,
+    { int toolPort = TOOL_PORT,
       List<String>? apiKeys,
       bool mcpServerSsl = false,
       String mcpServerHost = "127.0.0.1",
@@ -112,7 +116,7 @@ Future<void> startMcpHttpTool(
   McpHttp mcpHttp = McpHttp(url: "$protocol://$mcpServerHost:$mcpServerPort/mcp", oAuthTokens: oAuthTokens);
   McpHttpTool mcpHttpTool = McpHttpTool(mcpHttp);
   mcpHttpTool.init();
-  Server server = OpenToolServer(mcpHttpTool, version, port: PORT, apiKeys: apiKeys);
+  Server server = OpenToolServer(mcpHttpTool, version, port: TOOL_PORT, apiKeys: apiKeys);
   await server.start();
 }
 
