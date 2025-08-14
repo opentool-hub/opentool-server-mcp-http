@@ -48,7 +48,7 @@ void main(List<String> arguments) async {
 
     switch (cmdName) {
       case 'start':
-        final toolPort = command['toolPort']? TOOL_PORT : int.parse(command['toolPort']);
+        final toolPort = command['toolPort'] == null? TOOL_PORT : int.parse(command['toolPort']);
         String? version = command['version'];
         if(version != null) defaultVersion = version;
         else version = defaultVersion;
