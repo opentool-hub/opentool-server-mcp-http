@@ -52,7 +52,7 @@ void main(List<String> arguments) async {
         String? version = command['version'];
         if(version != null) defaultVersion = version;
         else version = defaultVersion;
-        final mcpSsl = command['ssl'] == null? true : false;
+        final mcpSsl = command['ssl'] == null? false : true;
         final mcpHost = command['host']?? "127.0.0.1";
         final mcpPort = int.parse(command['port']);
         final mcpAccessToken = command['accessToken']?? null;
@@ -116,7 +116,7 @@ Future<void> startMcpHttpTool(
   McpHttp mcpHttp = McpHttp(url: "$protocol://$mcpServerHost:$mcpServerPort/mcp", oAuthTokens: oAuthTokens);
   McpHttpTool mcpHttpTool = McpHttpTool(mcpHttp);
   mcpHttpTool.init();
-  Server server = OpenToolServer(mcpHttpTool, version, port: TOOL_PORT, apiKeys: apiKeys);
+  Server server = OpenToolServer(mcpHttpTool, version, port: toolPort, apiKeys: apiKeys);
   await server.start();
 }
 
